@@ -1,0 +1,10 @@
+1. Login to machine
+2. Try ./level00
+3. gdb level00
+4. disas main
+5. Look into comparing string 
+   0x080484e7 <+83>:    cmp    $0x149c,%eax
+0x149c in decimal it is 5276
+6. Try 5276 as the password.
+7. Get pass from level01
+cat ../level01/.pass

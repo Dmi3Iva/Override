@@ -1,0 +1,4 @@
+1. Login to level01
+2. disas main; disas verify_user_name;
+3. find pointer to bin/s
+4. login "dat_wil"
