@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int main()
 {
    puts("***********************************");
@@ -5,6 +7,7 @@ int main()
    puts("***********************************");
 
    printf("Password:");
+   int pass;
    scanf("%d", &pass);
 
    if (pass == 5276)
@@ -29,11 +32,9 @@ int main()
    0x080484b0 <+28>:    call   0x8048390 <puts@plt>
    0x080484b5 <+33>:    movl   $0x80485f0,(%esp)
    0x080484bc <+40>:    call   0x8048390 <puts@plt>
-
    0x080484c1 <+45>:    mov    $0x804862c,%eax
    0x080484c6 <+50>:    mov    %eax,(%esp)
    0x080484c9 <+53>:    call   0x8048380 <printf@plt>
-
    0x080484ce <+58>:    mov    $0x8048636,%eax
    0x080484d3 <+63>:    lea    0x1c(%esp),%edx
    0x080484d7 <+67>:    mov    %edx,0x4(%esp)
