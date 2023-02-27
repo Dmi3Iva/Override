@@ -1,10 +1,9 @@
-1. Login to machine
-2. Try ./level00
-3. gdb level00
-4. disas main
-5. Look into comparing string 
+1. Залогиниться на машине level00:level00
+2. Попробовать запустить ./level00
+3. Ревёрс инженеринг gdb level00; disas main
+4. Самое интересное тут
    0x080484e7 <+83>:    cmp    $0x149c,%eax
-0x149c in decimal it is 5276
-6. Try 5276 as the password.
-7. Get pass from level01
+0x149c это 5276 в decimal
+6. Попробовать 5276 как пароль. Получить права пользователя level01
+7. Тырим флаг
 cat ../level01/.pass
