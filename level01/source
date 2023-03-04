@@ -131,10 +131,10 @@ main
 int main()
 {
 
-    char pass[16];
+    char pass[80]; // TODO::
     int ret;
 
-    bzero(pass, 16);
+    bzero(pass, 80);
 
     ret = 0;
 
