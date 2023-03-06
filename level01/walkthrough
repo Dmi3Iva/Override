@@ -1,6 +1,7 @@
 1. Логин level01:uSq2ehEGT6c9S24zbshexZQBXUGrncxn5sD5QfGL
 2. Ревёрс инженеринг disas main; disas verify_user_name; disas verify_password;
-3. Сам код никак нас не приведёт к получению прав, но есть момент с переполнением. Надо подложить исполнение bin/sh в стек
+3. Сам код никак нас не приведёт к получению прав,
+но есть момент с переполнением. Надо подложить исполнение bin/sh в стек
 4. Подсчитываем сколько символов считывает программа и где она сломается 0x37634136
 https://wiremask.eu/tools/buffer-overflow-pattern-generator/
 5. Находим адрес функции system,  info functions system
