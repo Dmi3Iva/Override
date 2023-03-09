@@ -34,7 +34,6 @@ int main(void)
 {
     int password;
 
-    srand(time(0));
     puts("***********************************");
     puts("*\t\tlevel03\t\t**");
     puts("***********************************");

