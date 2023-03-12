@@ -9,6 +9,7 @@
 void log_wrapper(FILE *logf, char *msg, char *filename)
 {
     char log_buf[255];
+
     strcpy(log_buf, msg);
     snprintf(log_buf + strlen(log_buf), 255 - strlen(log_buf) - 1, filename);
     log_buf[strcspn(log_buf, "\n")] = '\0';
