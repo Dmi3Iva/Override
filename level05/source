@@ -5,15 +5,13 @@
 int main()
 {
     uint32_t i = 0;
-    uint8_t buffer[0x64]; // 100
+    uint8_t buffe[100];
 
-    fgets(buffer, 0x64, stdin);
+    fgets(buffer, 100, stdin);
     while (i < strlen(buffer))
     {
         if (buffer[i] > 64 && buffer[i] <= 90)
-        {
             buffer[i] ^= 0x20;
-        }
         i++;
     }
     printf(buffer);
