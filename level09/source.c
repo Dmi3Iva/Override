@@ -17,7 +17,7 @@ void set_username(struct s_message *message)
 {
 
     char buffer[128];
-    bzero(buffer, 1128);
+    bzero(buffer, 128);
     puts(">: Enter your username");
     printf(">>: ");
     fgets(buffer, 128, stdin);

