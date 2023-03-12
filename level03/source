@@ -5,6 +5,7 @@
 
 void decrypt(int mask)
 {
+    char str[16] = "Q}|u`sfg~sf{}|a3";
     int len = strlen(str);
     int i = 0;
 
@@ -23,11 +24,57 @@ void decrypt(int mask)
 void test(int nb1, int nb2)
 {
     nb1 -= nb2;
-    if (nb1 <= 21)
-        decrypt(nb1);
-    else
+    switch (x)
+    {
+    case 1:
+        decrypt(x);
+        return;
+    case 2:
+        decrypt(x);
+        return;
+    case 3:
+        decrypt(x);
+        return;
+    case 4:
+        decrypt(x);
+        return;
+    case 5:
+        decrypt(x);
+        return;
+    case 6:
+        decrypt(x);
+        return;
+    case 7:
+        decrypt(x);
+        return;
+    case 8:
+        decrypt(x);
+        return;
+    case 9:
+        decrypt(x);
+        return;
+    case 16:
+        decrypt(x);
+        return;
+    case 17:
+        decrypt(x);
+        return;
+    case 18:
+        decrypt(x);
+        return;
+    case 19:
+        decrypt(x);
+        return;
+    case 20:
+        decrypt(x);
+        return;
+    case 21:
+        decrypt(x);
+        return;
+    default:
         decrypt(rand());
-    return;
+        return;
+    }
 }
 
 int main(void)

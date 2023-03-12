@@ -2,17 +2,11 @@
 
 int main(int ac, char **av)
 {
-    char username[100]; /* rbp-0x70 */
-    bzero(&username, 12);
-
-    char pass[48]; /* rbp-0xa0 */
-    bzero(&pass, 5);
-
+    char username[100];   /* rbp-0x70 */
+    char pass[48];        /* rbp-0xa0 */
     char input_pass[112]; /* rbp-0x110 */
-    bzero(&input_pass, 12);
-
-    FILE *file;    /* rbp-0x8 */
-    int pass_size; /* rbp-0xc */
+    FILE *file;           /* rbp-0x8 */
+    int pass_size;        /* rbp-0xc */
 
     file = fopen("/home/users/level03/.pass", "r");
 
@@ -22,7 +16,7 @@ int main(int ac, char **av)
         exit(1);
     }
     pass_size = fread(&pass, 1, 41, file);
-    pass[strcspn(pass, "\n")] = 0; // ???
+    pass[strcspn(pass, "\n")] = 0;
 
     if (pass_size != 41)
     {
@@ -53,7 +47,7 @@ int main(int ac, char **av)
         return 0;
     }
 
-    printf(username); /* FORMAT STRING */
+    printf(username); /* EXPLOiT FOUND */
 
     puts(" does not have access!");
     exit(1);

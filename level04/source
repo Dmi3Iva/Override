@@ -7,10 +7,8 @@
 
 int main(void)
 {
-    int pid = fork(); // esp+0xac
-    char str[32];     // esp+0x20
-
-    memset(str, '\0', 32);
+    int pid = fork();   // esp+0xac
+    char str[32];       // esp+0x20
     int ptrace_ret = 0; // esp+0xa8
     int stat_loc = 0;   // esp+0x1c
 
